@@ -7,35 +7,46 @@
     "category": "Art & Tech",
     "award": "Grand Prix",
     "tags": ["art", "technology", "new media"],
-    "cover": "/public/next.svg",
+    "cover": "/images/emergence_4.avif",
     "description": "As Emergence Delft, art and tech students collaborate on the development of new media art using the expertise of both the TU Delft and nearby art schools. Our artworks aim to serve as a communication form for certain elements of a complex technology that can be difficult to comprehend for the general public. This gives the people the opportunity to reflect on it.\n\nWe dream of a space where art, technology, design and science come together, where unique experiences are created through new media art. As a team we want to develop artworks that offer a new perspective upon the impact of technology on society. Besides facilitating an understanding, our artworks are made to inspire and spark dialogue which enables reflection on potential opportunities and issues of complex technologies in our digital society.",
     "images": [
-      "/public/images/emergence_1.avif",
-      "/public/images/emergence_2.avif",
-      "/public/images/emergence_3.avif",
-      "/public/images/emergence_4.avif"
+      "/images/emergence_1.avif",
+      "/images/emergence_2.avif",
+      "/images/emergence_3.avif",
+      "/images/emergence_4.avif"
     ]
   },
   {
     "id": "space-oasis",
     "title": "Space Oasis",
     "year": 2023,
-    "category": "Space",
+    "category": "Architecture",
     "award": "Coup de Coeur",
     "tags": ["habitat", "modular"],
-    "cover": "/public/images/space_oasis_cover.avif",
-    "description": "Kinetic orbital lab optimized for micro-manufacturing.",
+    "cover": "/images/spaceoasis.avif",
+    "description": "Space Oasis Delft III is on their design of a Martian base capable of keeping up to  4 astronauts mentally and physically well! The team is spending this year designing a self-sustainable Martian base with a strong emphasis on psychological well-being. This year, the central module of the Martian habitat will build to give the world a perspective on how a Martian base should look. Curious to see the who is behind this project? Visit the team page to see the TU Delft students who are working on this year's Space Oasis!",
     "images": []
   },
   {
-    "id": "aquatelier",
-    "title": "The Aquatelier",
-    "year": 2021,
-    "category": "Climate",
+    "id": "hydromotion",
+    "title": "HydroMotion",
+    "year": 2005,
+    "category": "Engineering",
     "award": "Special Mention",
-    "tags": ["education", "museum"],
-    "cover": "/public/images/aquatelier_cover.avif",
-    "description": "Amphibious research studio for rising coasts.",
+    "tags": ["maritime", "hydrogen"],
+    "cover": "/images/hydromotion.jpg",
+    "description": "For 15 years our boats have successfully sailed on the power of the sun. This means 15 years of sustainable innovation and inspiring the maritime sector. In 2020, the team took the next big step towards a sustainable maritime industry by exploring uncharted waters and starting a new project; the Hydro Motion project. In 2021, the team built the world’s first flying hydrogen boat! In 2023, the team even became World Champions of the Monaco Energy Boat Challenge in the Open Sea Class. Last year, the team became the first ever foiling hydrogen-powered boat that crosses the North Sea from the Netherlands to the United Kingdom. This year, we will be the first foiling boat powered by liquid hydrogen to participate in the Monaco Energy Boat Challenge. We, together with our whole team, are very excited about the project! If you feel the same, follow us on our social media channels to keep up with our progress during the year @hydromotionteam ",
+    "images": []
+  },
+  {
+    "id": "hyperloop",
+    "title": "Hyperloop",
+    "year": 2015,
+    "category": "Engineering",
+    "award": "None",
+    "tags": ["mechanical", "transportation", "sustainability"],
+    "cover": "/images/hyperloop.png",
+    "description": "Transportation has not seen a revolution in over a hundred years. It's time for something new! In 2013, the solution was introduced: a high-speed transportation system (a Hyperloop system) using near-vacuum tubes in which pressurized vehicles travel. Due to low air resistance in the tubes, the vehicles can travel at speeds of over 1000 km/h while being more energy efficient, environmentally friendly, and convenient than airplanes. These vehicles are called 'pods'. Rolling resistance elimination: Hyperloop pods float above the track using magnetic levitation, this significantly reduces rolling resistance compared to traditional wheels. ‍‍Forward movement: The pods are propelled forward using linear electric motors. Air drag elimination: The pods travel in a near-vacuum tube, which minimizes air resistance, allowing for high-speed travel with less energy. If you wish to know more about the Hyperloop concept you can have a look at all ofand do not hesitate to contact us!",
     "images": []
   }
 ]
