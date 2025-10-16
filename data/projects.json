@@ -32,5 +32,16 @@
 "cover": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
 "description": "Amphibious research studio for rising coasts.",
 "images": []
+},
+{
+"id": "aquatelier",
+"title": "The Aquatelier",
+"year": 2021,
+"category": "Climate",
+"award": "Special Mention",
+"tags": ["education", "museum"],
+"cover": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
+"description": "Amphibious research studio for rising coasts.",
+"images": []
 }
 ]
