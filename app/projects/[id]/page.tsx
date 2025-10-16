@@ -1,4 +1,3 @@
-// app/projects/[id]/page.tsx
 import data from "@/data/projects.json";
 import type { Project } from "@/lib/types";
 import Badge from "@/components/Badge";
@@ -8,18 +7,25 @@ export async function generateStaticParams() {
   return (data as Project[]).map((p) => ({ id: p.id }));
 }
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
-  const p = (data as Project[]).find((x) => x.id === params.id);
+// 👇 params is a Promise in Next 15
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const p = (data as Project[]).find((x) => x.id === id);
   if (!p) return {};
-  return {
-    title: `${p.title} – Project Explorer`,
-    openGraph: { images: [{ url: p.cover }] },
-  };
+  return { title: `${p.title} – Project Explorer`, openGraph: { images: [{ url: p.cover }] } };
 }
 
-// IMPORTANT: default export must return JSX
-export default function ProjectPage({ params }: { params: { id: string } }) {
-  const p = (data as Project[]).find((x) => x.id === params.id);
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const p = (data as Project[]).find((x) => x.id === id);
   if (!p) notFound();
 
   return (
