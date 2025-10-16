@@ -53,7 +53,10 @@ export default async function Explore({
   const projects = items.slice(start, start + pageSize);
 
   const years = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2025 - i);
-
+  const all = data as Project[];
+  const categories = Array.from(new Set(all.map(p => p.category))).sort();
+  const awards     = Array.from(new Set(all.map(p => p.award))).sort();
+  
   return (
     <main className="mx-auto max-w-7xl px-4 py-10">
       <header className="mb-8 space-y-2">
@@ -61,8 +64,8 @@ export default async function Explore({
         <p className="text-gray-600">Search and filter a visual database of your work.</p>
       </header>
 
-      <Filters years={years} />
-
+      <Filters years={years} categories={categories} awards={awards} />
+      
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p) => (
           <ProjectCard key={p.id} p={p} />

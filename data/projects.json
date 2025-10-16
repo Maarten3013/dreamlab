@@ -1,36 +1,41 @@
 [
-{
-"id": "emergence",
-"title": "Emergence",
-"subtitle": "",
-"year": 2023,
-"category": "Art & Tech",
-"award": "Grand Prix",
-"tags": ["art", "technology", "new media"],
-"cover": "/data/images/emergence_4.avif",
-"description": "As Emergence Delft, art and tech students collaborate on the development of new media art using the expertise of both the TU Delft and nearby art schools. Our artworks aim to serve as a communication form for certain elements of a complex technology that can be difficult to comprehend for the general public. This gives the people the opportunity to reflect on it.\n\nWe dream of a space where art, technology, design and science come together, where unique experiences are created through new media art. As a team we want to develop artworks that offer a new perspective upon the impact of technology on society. Besides facilitating an understanding, our artworks are made to inspire and spark dialogue which enables reflection on potential opportunities and issues of complex technologies in our digital society.",
-"images": ["/data/images/emergence_1.avif", "/data/images/emergence_2.avif", "/data/images/emergence_3.avif", "/data/images/emergence_4.avif"]
-},
-{
-"id": "space-oasis",
-"title": "Space Oasis",
-"year": 2023,
-"category": "Space",
-"award": "Coupe de Coeur",
-"tags": ["habitat", "modular"],
-"cover": "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=1200&auto=format&fit=crop",
-"description": "Kinetic orbital lab optimized for micro‑manufacturing.",
-"images": []
-},
-{
-"id": "aquatelier",
-"title": "The Aquatelier",
-"year": 2021,
-"category": "Climate",
-"award": "Special Mention",
-"tags": ["education", "museum"],
-"cover": "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1200&auto=format&fit=crop",
-"description": "Amphibious research studio for rising coasts.",
-"images": []
-}
+  {
+    "id": "emergence",
+    "title": "Emergence",
+    "subtitle": "",
+    "year": 2023,
+    "category": "Art & Tech",
+    "award": "Grand Prix",
+    "tags": ["art", "technology", "new media"],
+    "cover": "/public/images/emergence_4.avif",
+    "description": "As Emergence Delft, art and tech students collaborate on the development of new media art using the expertise of both the TU Delft and nearby art schools. Our artworks aim to serve as a communication form for certain elements of a complex technology that can be difficult to comprehend for the general public. This gives the people the opportunity to reflect on it.\n\nWe dream of a space where art, technology, design and science come together, where unique experiences are created through new media art. As a team we want to develop artworks that offer a new perspective upon the impact of technology on society. Besides facilitating an understanding, our artworks are made to inspire and spark dialogue which enables reflection on potential opportunities and issues of complex technologies in our digital society.",
+    "images": [
+      "/public/images/emergence_1.avif",
+      "/public/images/emergence_2.avif",
+      "/public/images/emergence_3.avif",
+      "/public/images/emergence_4.avif"
+    ]
+  },
+  {
+    "id": "space-oasis",
+    "title": "Space Oasis",
+    "year": 2023,
+    "category": "Space",
+    "award": "Coup de Coeur",
+    "tags": ["habitat", "modular"],
+    "cover": "/public/images/space_oasis_cover.avif",
+    "description": "Kinetic orbital lab optimized for micro-manufacturing.",
+    "images": []
+  },
+  {
+    "id": "aquatelier",
+    "title": "The Aquatelier",
+    "year": 2021,
+    "category": "Climate",
+    "award": "Special Mention",
+    "tags": ["education", "museum"],
+    "cover": "/public/images/aquatelier_cover.avif",
+    "description": "Amphibious research studio for rising coasts.",
+    "images": []
+  }
 ]
