@@ -4,13 +4,12 @@ import Filters from "./Filters";
 import { headers } from "next/headers";
 
 async function getData(search: string) {
-  const h = await headers(); // 👈 await here
-  const proto = h.get("x-forwarded-proto") ?? "http";
-  const host  = h.get("host") ?? "localhost:3000";
-  const base  = `${proto}://${host}`;
+const h = await headers(); // if your types require await
+const proto = h.get("x-forwarded-proto") ?? "http";
+const host  = h.get("host") ?? "localhost:3000";
+const url   = `${proto}://${host}/api/projects${search ? `?${search}` : ""}`;
+const res = await fetch(url, { cache: "no-store" });
 
-  const url = `${base}/api/projects${search ? `?${search}` : ""}`;
-  const res = await fetch(url, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to load projects");
   return res.json();
 }
