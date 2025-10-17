@@ -1,24 +1,25 @@
 import Link from "next/link";
 import type { Project } from "@/lib/types";
-import Badge from "./Badge";
 
-function awardClasses(award?: string) {
+// Map award label → your sticker image in /public/awards
+function awardImage(award?: string): { src: string; alt: string } | null {
   if (!award || award === "None") return null;
+  const a = award.toLowerCase();
 
-  // Map labels → colors (tweak as you like)
-  if (/grand\s*prix/i.test(award))
-    return "bg-yellow-400 text-black";
-  if (/coup.?de.?coeur/i.test(award))
-    return "bg-rose-500 text-white";
-  if (/special/i.test(award))
-    return "bg-indigo-600 text-white";
-  if (/focus/i.test(award))
-    return "bg-emerald-600 text-white";
-  return "bg-black/80 text-white";
+  if (a.includes("grand") && a.includes("prix"))
+    return { src: "/awards/grand-prix.png", alt: "Grand Prix Award" };
+  if (a.includes("coup") && a.includes("coeur"))
+    return { src: "/awards/coup-de-coeur.png", alt: "Coup de Coeur Award" };
+  if (a.includes("special"))
+    return { src: "/awards/special-mention.png", alt: "Special Mention" };
+  if (a.includes("focus"))
+    return { src: "/awards/focus.png", alt: "Focus Award" };
+
+  return { src: "/awards/default-award.png", alt: award }; // optional fallback
 }
 
 export default function ProjectCard({ p }: { p: Project }) {
-  const ribbon = awardClasses(p.award);
+  const badge = awardImage(p.award);
 
   return (
     <Link
@@ -28,19 +29,14 @@ export default function ProjectCard({ p }: { p: Project }) {
     >
       {/* Image area */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
-        {/* Diagonal corner ribbon (no emojis) */}
-        {ribbon && (
-          <div className="pointer-events-none absolute right-0 top-0 z-10 h-0 w-0">
-            {/* The strip: rotate and place across the corner */}
-            <div
-              className={`absolute -right-12 top-4 rotate-45 ${ribbon} 
-                          px-8 py-1 text-[11px] font-semibold uppercase tracking-wide
-                          shadow ring-1 ring-black/10`}
-              style={{ transformOrigin: "center" }}
-            >
-              {p.award}
-            </div>
-          </div>
+        {/* Award sticker overlay (actual image you provided) */}
+        {badge && (
+          <img
+            src={badge.src}
+            alt={badge.alt}
+            className="pointer-events-none absolute right-3 top-3 z-10 h-8 w-auto select-none drop-shadow md:h-10 lg:h-12"
+            loading="eager"
+          />
         )}
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -51,8 +47,8 @@ export default function ProjectCard({ p }: { p: Project }) {
           loading="lazy"
         />
 
-        {/* Subtle top gradient to ensure ribbon readability on bright photos */}
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-black/20 to-transparent" />
+        {/* slight gradient helps badge readability on bright photos */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-black/10 to-transparent" />
       </div>
 
       {/* Meta */}
@@ -61,9 +57,12 @@ export default function ProjectCard({ p }: { p: Project }) {
           <h3 className="text-base font-semibold leading-tight">{p.title}</h3>
           {p.subtitle && <p className="text-sm text-gray-500">{p.subtitle}</p>}
           <div className="mt-2 flex flex-wrap gap-2">
-            <Badge label={p.category} />
-            <Badge label={String(p.year)} />
-            {/* Award chip removed here since it's on the image now. Re-add if you want both. */}
+            <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium">
+              {p.category}
+            </span>
+            <span className="inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-medium">
+              {String(p.year)}
+            </span>
           </div>
         </div>
       </div>
