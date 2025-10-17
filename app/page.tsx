@@ -71,12 +71,14 @@ export default function Home() {
       {/* FEATURED (2×2 grid) */}
       <section className="mx-auto max-w-7xl px-4 pb-14">
         <div className="mb-4 flex items-baseline justify-between">
-          <h2 className="text-2xl font-bold tracking-tight">Featured</h2>
+          <h2 className="text-2xl font-bold tracking-tight">
+            Award Winning Projects
+          </h2>
             <Link
               href="/explore?award=Winners"
               className="text-sm text-white/70 underline-offset-4 hover:text-white hover:underline"
             >
-              View all
+              All Winners
             </Link>
         </div>
 
