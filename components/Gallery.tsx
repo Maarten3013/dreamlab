@@ -89,7 +89,7 @@ export default function Gallery({
             {/* Controls */}
             <button
               onClick={() => setOpen(false)}
-              className="absolute right-2 top-2 rounded-full bg-white/90 px-3 py-1 text-sm font-medium shadow"
+              className="absolute right-2 top-2 rounded-full bg-black/90 px-3 py-1 text-sm font-medium shadow"
               aria-label="Close"
             >
               Close
@@ -98,19 +98,19 @@ export default function Gallery({
               <>
                 <button
                   onClick={prev}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 rounded-r-xl bg-white/90 px-3 py-2 text-sm font-medium shadow"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 rounded-r-xl bg-black/90 px-3 py-2 text-sm font-medium shadow"
                   aria-label="Previous image"
                 >
                   ‹
                 </button>
                 <button
                   onClick={next}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 rounded-l-xl bg-white/90 px-3 py-2 text-sm font-medium shadow"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 rounded-l-xl bg-black/90 px-3 py-2 text-sm font-medium shadow"
                   aria-label="Next image"
                 >
                   ›
                 </button>
-                <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-white/90 px-3 py-1 text-xs font-medium shadow">
+                <div className="pointer-events-none absolute bottom-2 left-1/2 -translate-x-1/2 rounded-full bg-black/90 px-3 py-1 text-xs font-medium shadow">
                   {idx + 1} / {items.length}
                 </div>
               </>

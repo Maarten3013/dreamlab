@@ -1,114 +1,84 @@
-// import Image from "next/image";
-
-// export default function Home() {
-//   return (
-//     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-//       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-//         <Image
-//           className="dark:invert"
-//           src="/next.svg"
-//           alt="Next.js logo"
-//           width={180}
-//           height={38}
-//           priority
-//         />
-//         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-//           <li className="mb-2 tracking-[-.01em]">
-//             Get started by editing{" "}
-//             <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-//               app/page.tsx
-//             </code>
-//             .
-//           </li>
-//           <li className="tracking-[-.01em]">
-//             Save and see your changes instantly.
-//           </li>
-//         </ol>
-
-//         <div className="flex gap-4 items-center flex-col sm:flex-row">
-//           <a
-//             className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-//             href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             <Image
-//               className="dark:invert"
-//               src="/vercel.svg"
-//               alt="Vercel logomark"
-//               width={20}
-//               height={20}
-//             />
-//             Deploy now
-//           </a>
-//           <a
-//             className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-//             href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//             target="_blank"
-//             rel="noopener noreferrer"
-//           >
-//             Read our docs
-//           </a>
-//         </div>
-//       </main>
-//       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-//         <a
-//           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-//           href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <Image
-//             aria-hidden
-//             src="/file.svg"
-//             alt="File icon"
-//             width={16}
-//             height={16}
-//           />
-//           Learn
-//         </a>
-//         <a
-//           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-//           href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <Image
-//             aria-hidden
-//             src="/window.svg"
-//             alt="Window icon"
-//             width={16}
-//             height={16}
-//           />
-//           Examples
-//         </a>
-//         <a
-//           className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-//           href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           <Image
-//             aria-hidden
-//             src="/globe.svg"
-//             alt="Globe icon"
-//             width={16}
-//             height={16}
-//           />
-//           Go to nextjs.org →
-//         </a>
-//       </footer>
-//     </div>
-//   );
-// }
-
 import Link from "next/link";
+import SiteHeader from "@/components/SiteHeader";
+import data from "@/data/projects.json";
+import type { Project } from "@/lib/types";
+import Masonry from "@/components/Masonry";
+
 export default function Home() {
-return (
-<main className="mx-auto flex min-h-dvh max-w-7xl flex-col items-center justify-center gap-6 p-8 text-center">
-<h1 className="text-4xl font-bold">Welcome To The Dream Lab</h1>
-<p className="text-gray-600">Explore the awesome projects made students of the TU Delft</p>
-<Link href="/explore" className="rounded-full border px-5 py-3 font-medium hover:bg-gray-50">Go to Explore →</Link>
-</main>
-);
+  // Pick featured: newest first, prefer awarded
+  const all = data as Project[];
+  const featured = [...all]
+    .sort((a, b) => {
+      const awardScore = (p: Project) =>
+        p.award && p.award !== "None" ? 1 : 0;
+      // sort by: award desc, year desc, title asc
+      return (
+        awardScore(b) - awardScore(a) ||
+        b.year - a.year ||
+        a.title.localeCompare(b.title)
+      );
+    })
+    .slice(0, 12);
+
+  return (
+    <main className="min-h-dvh bg-black text-white">
+      <SiteHeader />
+
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        {/* soft corner glows */}
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-40 top-[-10%] h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl" />
+          <div className="absolute right-[-10%] top-[-20%] h-[30rem] w-[30rem] rounded-full bg-violet-500/10 blur-3xl" />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4 pb-10 pt-12 md:pt-16">
+          <h1 className="text-balance text-5xl font-extrabold leading-tight tracking-tight md:text-6xl">
+            A cinematic archive of <span className="text-cyan-300">projects</span> &{" "}
+            <span className="text-violet-300">ideas</span>.
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-white/70">
+            Browse prototypes, installations, space habitats and more — filtered,
+            fast, and beautiful.
+          </p>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <Link
+              href="/explore"
+              className="rounded-2xl border border-cyan-400/50 bg-cyan-400/20 px-5 py-3 text-sm font-semibold text-cyan-100 ring-1 ring-cyan-300/30 transition hover:bg-cyan-400/30 hover:ring-cyan-300/50"
+            >
+              Explore projects →
+            </Link>
+            <a
+              href="mailto:hello@example.com"
+              className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white/90 hover:bg-white/10"
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* FEATURED WALL */}
+      <section className="mx-auto max-w-7xl px-4 pb-14">
+        <div className="mb-4 flex items-baseline justify-between">
+          <h2 className="text-2xl font-bold tracking-tight">Featured</h2>
+          <Link
+            href="/explore"
+            className="text-sm text-white/70 underline-offset-4 hover:text-white hover:underline"
+          >
+            View all
+          </Link>
+        </div>
+
+        {/* Reuse your Pinterest-style masonry + Tile cards */}
+        <Masonry projects={featured} />
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/10 py-8 text-center text-sm text-white/50">
+        © {new Date().getFullYear()} DreamLab — Built with Next.js + Tailwind
+      </footer>
+    </main>
+  );
 }
