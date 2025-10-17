@@ -7,13 +7,27 @@ import TileCard from "@/components/TileCard"; // 👈 add
 export default function Home() {
   const all = data as Project[];
 
-  // choose top 4 (award first, newest next)
+  // rank helper
+  function awardRank(a?: string) {
+    const s = (a || "").toLowerCase();
+    if (s.includes("grand") && s.includes("prix")) return 0;
+    if (s.includes("coup") && s.includes("coeur")) return 1;
+    if (s.includes("special")) return 2;         // “Special Mention”
+    if (s.includes("focus")) return 3;
+    return 99;                                   // non-winners
+  }
+  const safeYear = (p: Project) => (typeof p.year === "number" ? p.year : Number(p.year) || 0);
+  const safeTitle = (p: Project) => (p.title ?? "").toString();
+
+  // only winners, ranked: GP → Coup → Special → Focus, then newest, then title
   const featured = [...all]
-    .sort((a, b) => {
-      const award = (p: Project) => (p.award && p.award !== "None" ? 1 : 0);
-      return award(b) - award(a) || b.year - a.year || a.title.localeCompare(b.title);
-    })
-    .slice(0, 4); // 👈 only four
+    .filter(p => awardRank(p.award) < 99)
+    .sort((a, b) =>
+      awardRank(a.award) - awardRank(b.award) ||
+      safeYear(b) - safeYear(a) ||
+      safeTitle(a).localeCompare(safeTitle(b), undefined, { sensitivity: "base" })
+    )
+    .slice(0, 4);
 
   return (
     <main className="min-h-dvh bg-black text-white">
@@ -58,12 +72,12 @@ export default function Home() {
       <section className="mx-auto max-w-7xl px-4 pb-14">
         <div className="mb-4 flex items-baseline justify-between">
           <h2 className="text-2xl font-bold tracking-tight">Featured</h2>
-          <Link
-            href="/explore"
-            className="text-sm text-white/70 underline-offset-4 hover:text-white hover:underline"
-          >
-            View all
-          </Link>
+            <Link
+              href="/explore?award=Winners"
+              className="text-sm text-white/70 underline-offset-4 hover:text-white hover:underline"
+            >
+              View all
+            </Link>
         </div>
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">

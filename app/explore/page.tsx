@@ -45,6 +45,7 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   const yearStr = typeof spObj.year === "string" ? spObj.year : "All";
   const page = Number(typeof spObj.page === "string" ? spObj.page : 1) || 1;
   const pageSize = 48; // show more per page to fill the wall
+  
 
     // Use ?seed=... or default to "YYYYMMDD" so it changes daily
   const seedStr =
@@ -63,7 +64,11 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
           .includes(term)
       );
     const matchesCategory = category === "All" || p.category === category;
-    const matchesAward = award === "All" || p.award === award;
+    const matchesAward =
+      award === "All" ||
+      (award === "Winners"
+        ? !!p.award && p.award !== "None"
+        : p.award === award);
     const matchesYear = yearStr === "All" || p.year === Number(yearStr);
     return matchesQ && matchesCategory && matchesAward && matchesYear;
   });
