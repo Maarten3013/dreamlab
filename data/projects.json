@@ -170,9 +170,9 @@
     "category": "Biotech",
     "award": "None",
     "tags": ["synthetic-biology", "biotech", "research"],
-    "cover": "/images/igem_tudelft.webp",
+    "cover": "/images/igem_tudelft_1.jpeg",
     "description": "iGEM TU Delft is an interdisciplinary team that competes in the International Genetically Engineered Machine competition, building biological systems that address pressing societal challenges. Students design genetic constructs, assemble and characterize them in the lab, and iterate based on experimental evidence while complying with strict safety and ethics standards. The project includes human practices: engaging experts, policymakers, and affected communities to refine the problem framing and ensure responsible innovation. Beyond wet-lab work, the team develops models, software tools, and hardware enablers for measurement and control. Documentation and open sharing are core to iGEM culture, so every part—from protocols to parts characterization—aims to be reproducible. The experience compresses a full R&D cycle into one intense year, producing results that often outlive the competition. iGEM TU Delft showcases how synthetic biology can be both creative and careful, turning molecular ideas into tangible prototypes with credible paths to impact.",
-    "images": ["/images/igem_tudelft_1.jpeg", "/images/igem_tudelft_2.jfif"],
+    "images": ["/images/igem_tudelft.webp", "/images/igem_tudelft_2.jfif"],
     "website": "https://igem.tnw.tudelft.nl/"
   }
 ]
