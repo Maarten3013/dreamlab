@@ -69,12 +69,12 @@
   }
   
     /* Mild global grade – tweak to taste */
-  .cover-grade { filter: saturate(1) contrast(1.05) brightness(0.85); }
+  .cover-grade { filter: saturate(1) contrast(1.05) brightness(0.97); }
  
   /* on hover -> full saturation */
   .group:hover .cover-grade,
   .cover-grade:hover {
-    filter: saturate(1) contrast(1.05) brightness(0.97);
+    filter: saturate(1) contrast(1.05) brightness(1.05);
   }
 }
 
