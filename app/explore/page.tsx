@@ -49,11 +49,11 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
     <main className="min-h-dvh bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8">
         <header className="mb-4">
-          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white text-center">
+          <h1 className="text-2xl md:text-2xl tracking-tight text-white text-right">
             <Link
               href="/"
               aria-label="Go to landing page"
-              className="inline-block rounded px-1 hover:underline hover:decoration-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
+              className="inline-block rounded px-1 hover:decoration-white/70 focus:outline-none"
             >
               TU Delft | Dream Lab
             </Link>
