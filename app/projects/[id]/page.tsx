@@ -40,60 +40,50 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
         {/* Back link */}
         <a href="/explore" className="text-sm text-white/60 hover:text-white/90">← Back to Explore</a>
 
-      {/* HERO — mobile-first */}
-      <section className="relative mt-3 overflow-hidden rounded-3xl ring-1 ring-white/10">
-        {badge && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={badge.src}
-            alt={badge.alt}
-            className="pointer-events-none absolute right-3 top-3 z-20 h-14 w-auto select-none drop-shadow sm:right-5 sm:top-5 sm:h-16 md:h-20"
-          />
-        )}
+        {/* HERO — matches Explore vibe */}
+        <section className="relative mt-3 overflow-hidden rounded-3xl ring-1 ring-white/10">
+          {badge && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={badge.src} alt={badge.alt} className="pointer-events-none absolute right-5 top-5 z-20 h-16 w-auto select-none drop-shadow md:h-20 lg:h-24" />
+          )}
 
-        <div className="relative aspect-[4/3] sm:aspect-[16/9] w-full overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={p.cover} alt={p.title} className="h-full w-full object-cover" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 sm:h-40 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-
-          {/* glossy title bar */}
-          <div className="absolute bottom-3 left-3 right-3 z-20 rounded-2xl bg-black/60 px-3 py-2 backdrop-blur ring-1 ring-white/10 sm:bottom-5 sm:left-5 sm:right-5 sm:px-4 sm:py-3">
-            <div className="flex flex-wrap items-end justify-between gap-2 sm:gap-3">
-              <div>
-                <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight text-white">
-                  {p.title}
-                </h1>
-                {p.subtitle && (
-                  <p className="mt-1 text-xs sm:text-sm text-white/80">{p.subtitle}</p>
-                )}
-              </div>
-              <div className="flex shrink-0 flex-wrap items-center gap-1.5 sm:gap-2">
-                <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] sm:text-xs font-medium text-white ring-1 ring-white/15">
-                  {p.category}
-                </span>
-                <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] sm:text-xs font-medium text-white ring-1 ring-white/15">
-                  {p.year}
-                </span>
-                {p.award && p.award !== "None" && (
-                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-[9px] sm:text-[10px] font-semibold uppercase tracking-wide text-white ring-1 ring-white/15">
-                    {p.award}
+          <div className="relative aspect-[16/9] w-full overflow-hidden">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={p.cover} alt={p.title} className="h-full w-full object-cover" />
+            {/* bottom gradient for legibility */}
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+            {/* glossy title bar (white on black) */}
+            <div className="absolute bottom-5 left-5 right-5 z-20 rounded-2xl bg-black/60 p-4 backdrop-blur ring-1 ring-white/10">
+              <div className="flex flex-wrap items-end justify-between gap-3">
+                <div>
+                  <h1 className="text-3xl font-extrabold leading-tight text-white">{p.title}</h1>
+                  {p.subtitle && <p className="mt-1 text-sm text-white/80">{p.subtitle}</p>}
+                </div>
+                <div className="flex shrink-0 flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/15">
+                    {p.category}
                   </span>
-                )}
+                  <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-white ring-1 ring-white/15">
+                    {p.year}
+                  </span>
+                  {p.award && p.award !== "None" && (
+                    <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white ring-1 ring-white/15">
+                      {p.award}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
         {/* CONTENT + SIDEBAR — dark theme */}
         <section className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
           {/* Description + Gallery */}
           <article className="text-white">
-            <p className="mt-4 text-[15px] sm:text-base leading-7 sm:leading-7 text-white/85">
-              {p.description}
-            </p>
+            <p className="whitespace-pre-line text-white/85">{p.description}</p>
 
-            {/* (keep your gallery below) */}
+            {/* Mosaic gallery with lightbox (already built) */}
             <MosaicLightbox images={gallery} title={p.title} />
           </article>
 
