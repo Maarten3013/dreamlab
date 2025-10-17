@@ -67,6 +67,15 @@
   .shine-run::after {
     animation: shine 1.2s ease-out 1 forwards;
   }
+  
+    /* Mild global grade – tweak to taste */
+  .cover-grade { filter: saturate(0.6) contrast(1.05) brightness(0.97); }
+ 
+  /* on hover -> full saturation */
+  .group:hover .cover-grade,
+  .cover-grade:hover {
+    filter: saturate(1) contrast(1.05) brightness(0.97);
+  }
 }
 
 body {

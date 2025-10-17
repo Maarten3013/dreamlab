@@ -26,7 +26,7 @@ export default function TileCard({ p }: { p: Project }) {
                    duration-300 will-change-transform
                    hover:ring-2 hover:ring-cyan-400/60 hover:shadow-[0_0_0_1px_rgba(34,211,238,.3)]
                    hover:drop-shadow-[0_10px_30px_rgba(34,211,238,.15)]
-                   group-hover:translate-y-[-2px]">
+                   group-hover:translate-y-[-2px] cover-grade">
         {/* Award sticker */}
         {badge && (
           <img
@@ -43,7 +43,7 @@ export default function TileCard({ p }: { p: Project }) {
         <img
           src={p.cover}
           alt={p.title}
-          className="h-auto w-full rounded-3xl object-cover
+          className="h-auto w-full rounded-3xl object-cover cover-grade
                      transition-transform duration-500
                      group-hover:scale-[1.06]"
           loading="lazy"

@@ -19,7 +19,7 @@
   },
   {
     "id": "space-oasis",
-    "title": "Prometheus",
+    "title": "OUROBOROS",
     "subtitle": "Space Oasis Delft III",
     "year": 2023,
     "category": "Architecture",
@@ -59,7 +59,7 @@
   },
   {
     "id": "maarten-smits-bep",
-    "title": "Investigating the catalytic properties of a cupin-like protein from Thermotoga maritima (TM1010).",
+    "title": "Investigating the catalytic properties of a cupin-like protein from Thermotoga maritima (TM1010)",
     "subtitle": "Maarten Smits - BEP Life Science & Technology",
     "year": 2024,
     "category": "Research",
@@ -130,9 +130,9 @@
     "category": "Aerospace",
     "award": "None",
     "tags": ["rocketry", "aerospace", "propulsion"],
-    "cover": "/images/dare.jpg",
+    "cover": "/images/dare_1.jpg",
     "description": "DARE is one of the world’s largest and most active student rocketry organizations, conducting end-to-end missions that span propulsion development, airframes, avionics, recovery, and operations. The team runs complex campaigns where detailed test plans and safety procedures are as critical as the rocket hardware itself. Students design liquid, hybrid, and solid engines; characterize performance on test stands; and translate results into flight-ready systems. Recovery systems, structures, guidance, and telemetry are all built and validated in-house. High-altitude attempts challenge navigation, composite craftsmanship, and mission assurance, while educational launches bring new members up the learning curve. DARE’s multi-year programs like Stratos create continuity and knowledge transfer, supported by documentation and ground testing that mirror professional aerospace practice. Public demonstrations and collaborations with industry showcase credible student engineering in an inherently demanding domain. Every successful launch represents hundreds of design decisions converging into seconds of perfectly choreographed flight and a safe return to Earth.",
-    "images": ["/images/dare_1.jpg", "/images/dare_2.jpg"],
+    "images": ["/images/dare.jpg", "/images/dare_2.jpg"],
     "website": "https://dare.tudelft.nl"
   },
   {
@@ -156,9 +156,9 @@
     "category": "MedTech",
     "award": "None",
     "tags": ["exoskeleton", "biomechatronics", "rehabilitation"],
-    "cover": "/images/project_march.png",
+    "cover": "/images/project_march_1.avif",
     "description": "Project MARCH designs a wearable robotic exoskeleton to help people with spinal cord injury regain the ability to stand and walk. The team collaborates closely with a pilot—an experienced user who provides feedback on comfort, control, and daily usability—ensuring that engineering choices serve real human needs. Students integrate actuators, sensors, and battery systems into a compact, reliable frame, then develop control algorithms that translate intent into stable, natural motion over varied terrain. Safety and ergonomics are foundational: fit, pressure distribution, and fail-safe behavior receive as much attention as torque and speed. The project spans hardware, firmware, gait planning, user interface, and clinical evaluation, culminating in demonstrations that highlight independence and participation. By iterating annually, Project MARCH advances both performance and accessibility, showing how human-centered design can turn cutting-edge mechatronics into meaningful assistive technology. The ultimate goal is dignity and mobility—measured not just in steps taken, but in lives empowered.",
-    "images": ["/images/project_march_1.avif", "/images/project_march_2.jfif"],
+    "images": ["/images/project_march.png", "/images/project_march_2.jfif"],
     "website": "https://www.projectmarch.nl"
   },
   {
@@ -169,9 +169,9 @@
     "category": "AI & Social Impact",
     "award": "None",
     "tags": ["ai", "machine-learning", "social-impact"],
-    "cover": "/images/team_epoch.webp",
+    "cover": "/images/team_epoch_2.webp",
     "description": "Team Epoch builds machine-learning solutions for social good, combining data science with stakeholder-driven design. Projects typically begin with a partner—public sector, NGO, or startup—facing a problem where AI might help: improving accessibility, monitoring the environment, or allocating limited resources more fairly. Students work through the entire pipeline: ethical scoping, data collection and governance, model development, and deployment on realistic hardware. Interpretability, bias analysis, and privacy-preserving techniques are treated as first-class engineering requirements, not afterthoughts. By shipping prototypes that genuinely solve problems, the team learns to balance performance metrics with human context, maintenance burden, and long-term impact. Outreach includes open-source releases, workshops, and clear documentation so that others can build upon their work. Team Epoch demonstrates that modern AI can be rigorous, transparent, and useful—not just in benchmarks, but in the messy, consequential settings where technology intersects with everyday life.",
-    "images": ["/images/team_epoch_1.jpg", "/images/team_epoch_2.jfif"],
+    "images": ["/images/team_epoch_1.jpg", "/images/team_epoch.webp"],
     "website": "https://www.teamepoch.ai"
   },
   {
@@ -182,9 +182,9 @@
     "category": "Biotech",
     "award": "None",
     "tags": ["synthetic-biology", "biotech", "research"],
-    "cover": "/images/igem_tudelft_1.jpeg",
+    "cover": "/images/igem_tudelft.webp",
     "description": "iGEM TU Delft is an interdisciplinary team that competes in the International Genetically Engineered Machine competition, building biological systems that address pressing societal challenges. Students design genetic constructs, assemble and characterize them in the lab, and iterate based on experimental evidence while complying with strict safety and ethics standards. The project includes human practices: engaging experts, policymakers, and affected communities to refine the problem framing and ensure responsible innovation. Beyond wet-lab work, the team develops models, software tools, and hardware enablers for measurement and control. Documentation and open sharing are core to iGEM culture, so every part—from protocols to parts characterization—aims to be reproducible. The experience compresses a full R&D cycle into one intense year, producing results that often outlive the competition. iGEM TU Delft showcases how synthetic biology can be both creative and careful, turning molecular ideas into tangible prototypes with credible paths to impact.",
-    "images": ["/images/igem_tudelft.webp", "/images/igem_tudelft_2.jfif"],
+    "images": ["/images/igem_tudelft_1.jpeg", "/images/igem_tudelft_2.jfif"],
     "website": "https://igem.tnw.tudelft.nl/"
   }
 ]

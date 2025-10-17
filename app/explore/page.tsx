@@ -8,6 +8,34 @@ import Link from "next/link";
 
 type SP = Record<string, string | string[] | undefined>;
 
+// --- add helpers ---
+function cyrb53(str: string) { // string → 32-bit seed
+  let h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ str.length;
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = (h1 ^ (h1 >>> 16)) >>> 0;
+  return h1;
+}
+function mulberry32(a: number) { // seeded PRNG
+  return () => {
+    a |= 0; a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t ^= t + Math.imul(t ^ t >>> 7, 61 | t);
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+function shuffleInPlace<T>(arr: T[], seed: number) {
+  const rand = mulberry32(seed);
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
 export default async function Explore({ searchParams }: { searchParams: Promise<SP> }) {
   const spObj = await searchParams;
 
@@ -17,6 +45,13 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   const yearStr = typeof spObj.year === "string" ? spObj.year : "All";
   const page = Number(typeof spObj.page === "string" ? spObj.page : 1) || 1;
   const pageSize = 48; // show more per page to fill the wall
+
+    // Use ?seed=... or default to "YYYYMMDD" so it changes daily
+  const seedStr =
+    typeof spObj.seed === "string"
+      ? spObj.seed
+      : new Date().toISOString().slice(0, 10).replace(/-/g, ""); // e.g., 20251017
+  const seed = cyrb53(seedStr);
 
   let items = (data as Project[]).filter((p) => {
     const matchesQ =
@@ -33,7 +68,8 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
     return matchesQ && matchesCategory && matchesAward && matchesYear;
   });
 
-  items = items.sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
+  // Shuffle BEFORE pagination for a randomized wall
+  shuffleInPlace(items, seed);
 
   const total = items.length;
   const pages = Math.max(1, Math.ceil(total / pageSize));
@@ -44,7 +80,7 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   const years = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2025 - i);
   const categories = Array.from(new Set((data as Project[]).map((p) => p.category))).sort();
   const awards = Array.from(new Set((data as Project[]).map((p) => p.award))).sort();
-
+  
   return (
     <main className="min-h-dvh bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8">
