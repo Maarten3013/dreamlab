@@ -37,8 +37,8 @@ function Chip({
       className={[
         "rounded-full px-3 py-2 text-sm transition ring-1 ring-inset",
         active
-          ? `bg-black text-white ring-black`
-          : `bg-white text-gray-700 ring-gray-300 hover:bg-gray-50`,
+          ? "bg-black text-white ring-black"
+          : `${palette} hover:opacity-90` // <- soft pastel fill
       ].join(" ")}
       // Use pastel bg as a subtle dot before text when inactive
       style={!active ? { boxShadow: `inset 0 0 0 9999px rgba(0,0,0,0)` } : undefined}

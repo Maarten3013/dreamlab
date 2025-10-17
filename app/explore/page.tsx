@@ -14,7 +14,7 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   const award = typeof spObj.award === "string" ? spObj.award : "All";
   const yearStr = typeof spObj.year === "string" ? spObj.year : "All";
   const page = Number(typeof spObj.page === "string" ? spObj.page : 1) || 1;
-  const pageSize = 30;
+  const pageSize = 48; // show more per page to fill the wall
 
   let items = (data as Project[]).filter((p) => {
     const matchesQ =
@@ -45,33 +45,28 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
 
   return (
     <main className="min-h-dvh bg-gradient-to-b from-sky-50 via-white to-violet-50/40">
-      <div className="mx-auto max-w-7xl px-4 py-10">
-        {/* Clean header */}
-        <header className="mb-6">
+      <div className="mx-auto max-w-7xl px-4 py-8">
+        {/* Compact header */}
+        <header className="mb-4">
           <h1 className="text-4xl font-extrabold tracking-tight">Explore</h1>
-          <p className="mt-1 text-gray-600">Browse your projects with fast filters and a colorful, minimal UI.</p>
+          <p className="mt-1 text-gray-600">A cinematic wall of your projects.</p>
         </header>
 
-        {/* Filter tray */}
-        <div className="mb-6 rounded-3xl border bg-white/80 p-4 backdrop-blur-md ring-1 ring-black/5 md:p-5">
+        {/* Slim tray around filters */}
+        <div className="mb-6 rounded-3xl border bg-white/80 p-4 backdrop-blur ring-1 ring-black/5">
           <Filters years={years} categories={categories} awards={awards} />
         </div>
 
-        {/* Masonry */}
+        {/* The wall */}
         <Masonry projects={projects as Project[]} />
 
-        {/* Empty state */}
         {projects.length === 0 && (
           <div className="mt-10 rounded-3xl border bg-white/80 p-10 text-center text-gray-600">
-            <div className="mx-auto mb-3 h-10 w-10 rounded-full bg-gradient-to-br from-sky-400 to-violet-500 opacity-80" />
             No results. Try clearing filters.
           </div>
         )}
 
-        {/* Pager */}
-        {total > pageSize && (
-          <Pager total={total} page={safePage} pageSize={pageSize} />
-        )}
+        {total > pageSize && <Pager total={total} page={safePage} pageSize={pageSize} />}
       </div>
     </main>
   );
