@@ -50,12 +50,27 @@ export default function TileCard({ p }: { p: Project }) {
         />
 
         {/* Hover title pill */}
-        <div className="
-          pointer-events-none absolute inset-x-0 bottom-0 z-10
-          mx-2 mb-2 rounded-2xl bg-black/70 px-3 py-2 backdrop-blur
-          md:translate-y-2 md:opacity-0 md:transition md:duration-300 md:group-hover:translate-y-0 md:group-hover:opacity-80
-        ">
-          <h3 className="line-clamp-1 text-sm md:text-base font-thin text-gray-200">{p.title}</h3>
+        <div className="pointer-events-none absolute inset-x-2 bottom-2 z-10">
+          <div
+            className="
+              translate-y-0 opacity-100
+              md:translate-y-2 md:opacity-0
+              md:group-hover:translate-y-0 md:group-hover:opacity-100
+              transition-all duration-300
+              rounded-xl bg-white/10 backdrop-blur-md ring-1 ring-white/15 shadow-sm
+            "
+          >
+            <div className="flex items-center justify-between px-3 py-1.5">
+              <h3 className="truncate text-sm font-medium text-white/95">{p.title}</h3>
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4 text-white/70 transition-transform duration-300 md:group-hover:translate-x-0.5"
+                aria-hidden="true"
+              >
+                <path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </div>
+          </div>
         </div>
 
         {/* Subtle inner gradient for depth */}
