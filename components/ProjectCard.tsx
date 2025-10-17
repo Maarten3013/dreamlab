@@ -2,27 +2,23 @@ import Link from "next/link";
 import type { Project } from "@/lib/types";
 import Badge from "./Badge";
 
-function awardStyle(award?: string) {
-  if (!award || award === "None") return { show: false, wrap: "", icon: "", text: "" };
+function awardClasses(award?: string) {
+  if (!award || award === "None") return null;
 
-  // You can tweak these per your labels:
-  const base =
-    "pointer-events-none absolute left-3 top-3 z-10 inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold shadow ring-1 backdrop-blur";
+  // Map labels → colors (tweak as you like)
   if (/grand\s*prix/i.test(award))
-    return { show: true, wrap: `${base} bg-yellow-400/90 text-black ring-black/10`, icon: "🏆", text: award };
+    return "bg-yellow-400 text-black";
   if (/coup.?de.?coeur/i.test(award))
-    return { show: true, wrap: `${base} bg-rose-500/90 text-white ring-black/10`, icon: "❤️", text: award };
+    return "bg-rose-500 text-white";
   if (/special/i.test(award))
-    return { show: true, wrap: `${base} bg-indigo-500/90 text-white ring-black/10`, icon: "⭐", text: award };
+    return "bg-indigo-600 text-white";
   if (/focus/i.test(award))
-    return { show: true, wrap: `${base} bg-emerald-500/90 text-white ring-black/10`, icon: "🎯", text: award };
-
-  // Fallback for any other non-empty award
-  return { show: true, wrap: `${base} bg-black/70 text-white ring-white/10`, icon: "🏅", text: award };
+    return "bg-emerald-600 text-white";
+  return "bg-black/80 text-white";
 }
 
 export default function ProjectCard({ p }: { p: Project }) {
-  const award = awardStyle(p.award);
+  const ribbon = awardClasses(p.award);
 
   return (
     <Link
@@ -30,14 +26,21 @@ export default function ProjectCard({ p }: { p: Project }) {
       className="group relative block overflow-hidden rounded-2xl border shadow-sm transition hover:shadow-lg"
       aria-label={`${p.title}${p.award && p.award !== "None" ? ` — ${p.award}` : ""}`}
     >
-      {/* Image */}
+      {/* Image area */}
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
-        {/* Award overlay */}
-        {award.show && (
-          <span className={award.wrap} aria-hidden="true">
-            <span>{award.icon}</span>
-            <span>{award.text}</span>
-          </span>
+        {/* Diagonal corner ribbon (no emojis) */}
+        {ribbon && (
+          <div className="pointer-events-none absolute right-0 top-0 z-10 h-0 w-0">
+            {/* The strip: rotate and place across the corner */}
+            <div
+              className={`absolute -right-12 top-4 rotate-45 ${ribbon} 
+                          px-8 py-1 text-[11px] font-semibold uppercase tracking-wide
+                          shadow ring-1 ring-black/10`}
+              style={{ transformOrigin: "center" }}
+            >
+              {p.award}
+            </div>
+          </div>
         )}
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -48,7 +51,7 @@ export default function ProjectCard({ p }: { p: Project }) {
           loading="lazy"
         />
 
-        {/* subtle top gradient to improve contrast for the ribbon on bright images */}
+        {/* Subtle top gradient to ensure ribbon readability on bright photos */}
         <div className="pointer-events-none absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-black/20 to-transparent" />
       </div>
 
@@ -60,8 +63,7 @@ export default function ProjectCard({ p }: { p: Project }) {
           <div className="mt-2 flex flex-wrap gap-2">
             <Badge label={p.category} />
             <Badge label={String(p.year)} />
-            {/* We no longer show award here since it's overlaid; keep the next line if you want both */}
-            {/* {p.award && p.award !== "None" && <Badge label={p.award} />} */}
+            {/* Award chip removed here since it's on the image now. Re-add if you want both. */}
           </div>
         </div>
       </div>
