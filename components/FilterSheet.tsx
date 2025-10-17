@@ -18,8 +18,10 @@ export default function FilterSheet({ children }: { children: React.ReactNode })
       <button
         aria-label="Open filters"
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center rounded-full border bg-white/90 shadow-md ring-1 ring-black/5 backdrop-blur hover:bg-white"
-      >
+        className="fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center
+        rounded-full border border-white/10 bg-white/5 shadow-lg ring-1 ring-white/10
+        backdrop-blur hover:bg-white/10 hover:ring-white/30 transition">
+            
         {/* funnel icon */}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden className="opacity-80">
           <path d="M3 5h18l-7 8v5l-4 2v-7L3 5z" stroke="currentColor" strokeWidth="1.6" fill="currentColor" />
@@ -37,8 +39,9 @@ export default function FilterSheet({ children }: { children: React.ReactNode })
 
       {/* Slide-over panel */}
       <aside
-        className={`fixed right-0 top-0 z-50 h-full w-full max-w-md transform bg-white p-5 shadow-2xl transition-transform duration-300 ease-out
-          ${open ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed right-0 top-0 z-50 h-full w-full max-w-md transform bg-neutral-950 p-5
+        shadow-2xl ring-1 ring-white/10 transition-transform duration-300 ease-out
+        ${open ? "translate-x-0" : "translate-x-full"}`}
         role="dialog"
         aria-modal="true"
         aria-label="Filters"
@@ -47,7 +50,7 @@ export default function FilterSheet({ children }: { children: React.ReactNode })
           <h2 className="text-lg font-semibold">Filters</h2>
           <button
             onClick={() => setOpen(false)}
-            className="rounded-full border px-3 py-1 text-sm hover:bg-gray-50"
+            className="rounded-full border border-white/10 px-3 py-1 text-sm text-white hover:bg-white/10"
             aria-label="Close filters"
           >
             Close

@@ -45,11 +45,11 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   const awards = Array.from(new Set((data as Project[]).map((p) => p.award))).sort();
 
   return (
-    <main className="min-h-dvh bg-gradient-to-b from-sky-50 via-white to-violet-50/40">
+    <main className="min-h-dvh bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8">
         <header className="mb-4">
-          <h1 className="text-4xl font-extrabold tracking-tight">Explore</h1>
-          <p className="mt-1 text-gray-600">A cinematic wall of your projects.</p>
+          <h1 className="text-4xl font-extrabold tracking-tight text-white">Welcome to the DreamLab</h1>
+          <p className="mt-1 text-gray-400">Here you will find the most innovative and groundbreaking projects the TU Delft has produced</p>
         </header>
 
         {/* remove the old visible tray:

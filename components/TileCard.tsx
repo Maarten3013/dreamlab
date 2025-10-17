@@ -17,35 +17,45 @@ export default function TileCard({ p }: { p: Project }) {
   return (
     <Link
       href={`/projects/${p.id}`}
-      className="group relative block w-full overflow-hidden rounded-3xl"
+      className="group relative block w-full overflow-visible"
       style={{ breakInside: "avoid" }}
       aria-label={p.title}
     >
-      {/* Award sticker (top-right) */}
-      {badge && (
-        // eslint-disable-next-line @next/next/no-img-element
+      <div
+        className="relative rounded-3xl ring-1 ring-white/10 transition
+                   duration-300 will-change-transform
+                   hover:ring-2 hover:ring-cyan-400/60 hover:shadow-[0_0_0_1px_rgba(34,211,238,.3)]
+                   hover:drop-shadow-[0_10px_30px_rgba(34,211,238,.15)]
+                   group-hover:translate-y-[-2px]">
+        {/* Award sticker */}
+        {badge && (
+          <img
+            src={badge.src}
+            alt={badge.alt}
+            className="pointer-events-none absolute right-3 top-3 z-20 h-12 w-auto select-none drop-shadow md:h-14 lg:h-16"
+            loading="eager"
+          />
+        )}
+
+        {/* Image */}
         <img
-          src={badge.src}
-          alt={badge.alt}
-          className="pointer-events-none absolute right-3 top-3 z-20 h-12 w-auto select-none drop-shadow md:h-14 lg:h-16"
-          loading="eager"
+          src={p.cover}
+          alt={p.title}
+          className="h-auto w-full rounded-3xl object-cover
+                     transition-transform duration-500
+                     group-hover:scale-[1.06]"
+          loading="lazy"
         />
-      )}
 
-      {/* Image */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={p.cover}
-        alt={p.title}
-        className="h-auto w-full object-cover transition duration-500 group-hover:scale-[1.02]"
-        loading="lazy"
-      />
-
-      {/* Hover overlay (title only) */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 translate-y-2 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-        <div className="mx-2 mb-2 rounded-2xl bg-black/55 px-3 py-2 backdrop-blur">
-          <h3 className="line-clamp-1 text-base font-semibold text-white">{p.title}</h3>
+        {/* Hover title pill */}
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 translate-y-2 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+          <div className="mx-2 mb-2 rounded-2xl bg-black/70 px-3 py-2 backdrop-blur ring-1 ring-white/10">
+            <h3 className="line-clamp-1 text-base font-semibold text-white">{p.title}</h3>
+          </div>
         </div>
+
+        {/* Subtle inner gradient for depth */}
+        <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-b from-transparent via-transparent to-black/10" />
       </div>
     </Link>
   );
