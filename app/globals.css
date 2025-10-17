@@ -23,6 +23,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html, body {
+    background-color: #000;       /* fallback if classes get removed */
+    color-scheme: dark;
+  }
+
+  /* Make sure we truly cover the dynamic viewport on iOS */
+  body {
+    min-height: 100dvh;           /* modern mobile browsers */
+  }
+
+  /* Optional: if you have fixed elements at edges, add safe-area padding helpers */
+  .px-safe {
+    padding-left: calc(1rem + env(safe-area-inset-left));
+    padding-right: calc(1rem + env(safe-area-inset-right));
+  }
+  .pb-safe {
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  }
+}
+
 @layer utilities {
   .bg-glow {
     background:

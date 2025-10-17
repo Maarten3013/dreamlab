@@ -32,11 +32,13 @@ export default function TileCard({ p }: { p: Project }) {
           <img
             src={badge.src}
             alt={badge.alt}
-            className="pointer-events-none absolute right-3 top-3 z-20 h-12 w-auto select-none drop-shadow md:h-14 lg:h-16"
+            className="pointer-events-none absolute right-3 top-3 z-20
+                      h-16 w-auto select-none drop-shadow
+                      sm:h-20 md:h-24 lg:h-28"
             loading="eager"
           />
         )}
-
+        
         {/* Image */}
         <img
           src={p.cover}
