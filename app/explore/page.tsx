@@ -14,9 +14,8 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   const award = typeof spObj.award === "string" ? spObj.award : "All";
   const yearStr = typeof spObj.year === "string" ? spObj.year : "All";
   const page = Number(typeof spObj.page === "string" ? spObj.page : 1) || 1;
-  const pageSize = 30; // show more per page for masonry
+  const pageSize = 30;
 
-  // Filter in-memory from local JSON
   let items = (data as Project[]).filter((p) => {
     const matchesQ =
       q === "" ||
@@ -32,7 +31,6 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
     return matchesQ && matchesCategory && matchesAward && matchesYear;
   });
 
-  // Sort newest first, then alpha
   items = items.sort((a, b) => b.year - a.year || a.title.localeCompare(b.title));
 
   const total = items.length;
@@ -41,35 +39,40 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   const start = (safePage - 1) * pageSize;
   const projects = items.slice(start, start + pageSize);
 
-  // Dynamic options for nicer chips/selects
   const years = Array.from({ length: 2025 - 2015 + 1 }, (_, i) => 2025 - i);
   const categories = Array.from(new Set((data as Project[]).map((p) => p.category))).sort();
   const awards = Array.from(new Set((data as Project[]).map((p) => p.award))).sort();
 
   return (
-    <main className="mx-auto max-w-7xl px-4 py-10">
-      <header className="mb-6">
-        <h1 className="text-4xl font-extrabold tracking-tight">Explore Projects</h1>
-        <p className="mt-1 text-gray-600">A visual, filterable showcase of your work.</p>
-      </header>
+    <main className="min-h-dvh bg-gradient-to-b from-sky-50 via-white to-violet-50/40">
+      <div className="mx-auto max-w-7xl px-4 py-10">
+        {/* Clean header */}
+        <header className="mb-6">
+          <h1 className="text-4xl font-extrabold tracking-tight">Explore</h1>
+          <p className="mt-1 text-gray-600">Browse your projects with fast filters and a colorful, minimal UI.</p>
+        </header>
 
-      {/* Polished filter tray (no scrollbars, wraps nicely) */}
-      <div className="mb-6 rounded-3xl border bg-white/70 p-4 backdrop-blur md:p-5">
-        <Filters years={years} categories={categories} awards={awards} />
-      </div>
-
-      {/* Pinterest/eyecandy masonry */}
-      <Masonry projects={projects as Project[]} />
-
-      {projects.length === 0 && (
-        <div className="mt-10 rounded-2xl border p-8 text-center text-gray-600">
-          No results. Try clearing filters.
+        {/* Filter tray */}
+        <div className="mb-6 rounded-3xl border bg-white/80 p-4 backdrop-blur-md ring-1 ring-black/5 md:p-5">
+          <Filters years={years} categories={categories} awards={awards} />
         </div>
-      )}
 
-      {total > pageSize && (
-        <Pager total={total} page={safePage} pageSize={pageSize} />
-      )}
+        {/* Masonry */}
+        <Masonry projects={projects as Project[]} />
+
+        {/* Empty state */}
+        {projects.length === 0 && (
+          <div className="mt-10 rounded-3xl border bg-white/80 p-10 text-center text-gray-600">
+            <div className="mx-auto mb-3 h-10 w-10 rounded-full bg-gradient-to-br from-sky-400 to-violet-500 opacity-80" />
+            No results. Try clearing filters.
+          </div>
+        )}
+
+        {/* Pager */}
+        {total > pageSize && (
+          <Pager total={total} page={safePage} pageSize={pageSize} />
+        )}
+      </div>
     </main>
   );
 }
@@ -87,11 +90,11 @@ function Pager({ total, page, pageSize }: { total: number; page: number; pageSiz
 
   return (
     <div className="mx-auto mt-10 flex max-w-md items-center justify-between">
-      <a className={`rounded-full border px-4 py-2 ${!prev && "pointer-events-none opacity-50"}`} href={prev ? makeHref(prev) : "#"}>
+      <a className={`rounded-full border px-4 py-2 transition ${!prev ? "pointer-events-none opacity-40" : "hover:bg-gray-50"}`} href={prev ? makeHref(prev) : "#"}>
         ← Prev
       </a>
       <span className="text-sm text-gray-600">Page {page} of {pages} · {total} results</span>
-      <a className={`rounded-full border px-4 py-2 ${!next && "pointer-events-none opacity-50"}`} href={next ? makeHref(next) : "#"}>
+      <a className={`rounded-full border px-4 py-2 transition ${!next ? "pointer-events-none opacity-40" : "hover:bg-gray-50"}`} href={next ? makeHref(next) : "#"}>
         Next →
       </a>
     </div>
