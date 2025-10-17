@@ -3,18 +3,68 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 type Img = { url: string; alt?: string } | string;
 
+function MosaicItem({
+  img,
+  title,
+  onOpen,
+}: {
+  img: { url: string; alt?: string };
+  title: string;
+  onOpen: () => void;
+}) {
+  const ref = useRef<HTMLButtonElement>(null);
+  const [span, setSpan] = useState(20);
+
+  // base row height (must match container's auto-rows)
+  const ROW = 8; // px
+
+  const measure = () => {
+    const el = ref.current;
+    if (!el) return;
+    // add 1 row for safety to avoid rounding gaps
+    const rows = Math.ceil(el.getBoundingClientRect().height / ROW) + 1;
+    setSpan(rows);
+  };
+
+  useEffect(() => {
+    measure();
+    const onResize = () => measure();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  return (
+    <button
+      ref={ref}
+      onClick={onOpen}
+      style={{ gridRowEnd: `span ${span}` }}
+      className="group relative w-full overflow-hidden rounded-2xl bg-neutral-800 focus:outline-none ring-1 ring-white/10 hover:ring-white/20"
+      aria-label="Open image"
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={img.url}
+        alt={img.alt ?? title}
+        className="h-auto w-full object-cover transition duration-300 group-hover:opacity-95"
+        loading="lazy"
+        onLoad={measure}
+      />
+    </button>
+  );
+}
+
 export default function MosaicLightbox({ images, title }: { images: Img[]; title: string }) {
   const items = useMemo(
     () =>
       (images ?? [])
-        .map((img) => (typeof img === "string" ? { url: img, alt: title } : img))
+        .map((i) => (typeof i === "string" ? { url: i, alt: title } : i))
         .filter((i) => !!i.url),
     [images, title]
   );
 
   const [open, setOpen] = useState(false);
   const [idx, setIdx] = useState(0);
-  const [ui, setUi] = useState(true); // show/hide controls
+  const [ui, setUi] = useState(true);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const onOpen = (i: number) => {
@@ -25,7 +75,6 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
   const prev = () => setIdx((i) => (i - 1 + items.length) % items.length);
   const next = () => setIdx((i) => (i + 1) % items.length);
 
-  // close & arrows
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -37,7 +86,6 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
     return () => window.removeEventListener("keydown", onKey);
   }, [open, items.length]);
 
-  // auto-hide UI after inactivity
   const pokeUI = () => {
     setUi(true);
     if (hideTimer.current) clearTimeout(hideTimer.current);
@@ -48,23 +96,19 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
 
   return (
     <>
-      {/* Mosaic thumbnails */}
-      <div className="mt-8 columns-2 gap-3 md:columns-3">
+      {/* DENSE MASONRY (no holes) */}
+      <div
+        className="
+          mt-8 grid auto-rows-[8px] grid-cols-2 gap-3 md:grid-cols-3
+          [grid-auto-flow:dense]
+        "
+      >
         {items.map((img, i) => (
-          <button
-            key={img.url + i}
-            onClick={() => onOpen(i)}
-            className="mb-3 w-full overflow-hidden rounded-2xl bg-gray-100 transition hover:opacity-90 focus:outline-none"
-            style={{ breakInside: "avoid" }}
-            aria-label={`Open image ${i + 1}`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={img.url} alt={img.alt ?? title} className="h-auto w-full object-cover" loading="lazy" />
-          </button>
+          <MosaicItem key={img.url + i} img={img} title={title} onOpen={() => onOpen(i)} />
         ))}
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox (unchanged UI, with sleek round buttons) */}
       {open && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 p-4"
@@ -75,7 +119,6 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
         >
           <div className="relative w-full max-w-6xl" onClick={(e) => e.stopPropagation()}>
             <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl bg-black ring-1 ring-white/10">
-              {/* image */}
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={items[idx].url}
@@ -84,7 +127,6 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
                 onLoad={pokeUI}
               />
 
-              {/* close (top-right) */}
               <button
                 onClick={() => setOpen(false)}
                 aria-label="Close"
@@ -97,7 +139,6 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
                 </svg>
               </button>
 
-              {/* nav buttons */}
               {items.length > 1 && (
                 <>
                   <button
@@ -124,7 +165,6 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
                     </svg>
                   </button>
 
-                  {/* progress pill */}
                   <div
                     className={`pointer-events-none absolute bottom-3 left-1/2 -translate-x-1/2 rounded-full
                                 bg-white/10 px-3 py-1 text-xs font-medium text-white ring-1 ring-white/15

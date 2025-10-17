@@ -2,23 +2,18 @@ import Link from "next/link";
 import SiteHeader from "@/components/SiteHeader";
 import data from "@/data/projects.json";
 import type { Project } from "@/lib/types";
-import Masonry from "@/components/Masonry";
+import TileCard from "@/components/TileCard"; // 👈 add
 
 export default function Home() {
-  // Pick featured: newest first, prefer awarded
   const all = data as Project[];
+
+  // choose top 4 (award first, newest next)
   const featured = [...all]
     .sort((a, b) => {
-      const awardScore = (p: Project) =>
-        p.award && p.award !== "None" ? 1 : 0;
-      // sort by: award desc, year desc, title asc
-      return (
-        awardScore(b) - awardScore(a) ||
-        b.year - a.year ||
-        a.title.localeCompare(b.title)
-      );
+      const award = (p: Project) => (p.award && p.award !== "None" ? 1 : 0);
+      return award(b) - award(a) || b.year - a.year || a.title.localeCompare(b.title);
     })
-    .slice(0, 12);
+    .slice(0, 4); // 👈 only four
 
   return (
     <main className="min-h-dvh bg-black text-white">
@@ -50,7 +45,7 @@ export default function Home() {
               Explore projects →
             </Link>
             <a
-              href="mailto:hello@example.com"
+              href="mailto:maarten.smits@spaceoasisdelft.nl"
               className="rounded-2xl border border-white/15 px-5 py-3 text-sm font-medium text-white/90 hover:bg-white/10"
             >
               Contact
@@ -59,7 +54,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FEATURED WALL */}
+      {/* FEATURED (2×2 grid) */}
       <section className="mx-auto max-w-7xl px-4 pb-14">
         <div className="mb-4 flex items-baseline justify-between">
           <h2 className="text-2xl font-bold tracking-tight">Featured</h2>
@@ -71,11 +66,13 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Reuse your Pinterest-style masonry + Tile cards */}
-        <Masonry projects={featured} />
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-4">
+          {featured.map((p) => (
+            <TileCard key={p.id} p={p} />
+          ))}
+        </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="border-t border-white/10 py-8 text-center text-sm text-white/50">
         © {new Date().getFullYear()} DreamLab — Built with Next.js + Tailwind
       </footer>

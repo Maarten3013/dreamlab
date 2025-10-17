@@ -53,5 +53,18 @@
     "description": "Transportation has not seen a revolution in over a hundred years. It's time for something new! In 2013, the solution was introduced: a high-speed transportation system (a Hyperloop system) using near-vacuum tubes in which pressurized vehicles travel. Due to low air resistance in the tubes, the vehicles can travel at speeds of over 1000 km/h while being more energy efficient, environmentally friendly, and convenient than airplanes. These vehicles are called 'pods'. Rolling resistance elimination: Hyperloop pods float above the track using magnetic levitation, this significantly reduces rolling resistance compared to traditional wheels. ‍‍Forward movement: The pods are propelled forward using linear electric motors. Air drag elimination: The pods travel in a near-vacuum tube, which minimizes air resistance, allowing for high-speed travel with less energy. If you wish to know more about the Hyperloop concept you can have a look at all ofand do not hesitate to contact us!",
     "images": [],
     "website": "https://www.delfthyperloop.nl/"
+  },
+  {
+    "id": "maarten-smits-bep",
+    "title": "Maarten Smits - Bachelor End Project",
+    "subtitle": "Investigating the catalytic properties of a cupin-like protein from Thermotoga maritima (TM1010).",
+    "year": 2024,
+    "category": "Research",
+    "award": "focus",
+    "tags": ["appliedsciences", "biocatalysis", "research"],
+    "cover": "/images/aligned.png",
+    "description": "Transportation has not seen a revolution in over a hundred years. It's time for something new! In 2013, the solution was introduced: a high-speed transportation system (a Hyperloop system) using near-vacuum tubes in which pressurized vehicles travel. Due to low air resistance in the tubes, the vehicles can travel at speeds of over 1000 km/h while being more energy efficient, environmentally friendly, and convenient than airplanes. These vehicles are called 'pods'. Rolling resistance elimination: Hyperloop pods float above the track using magnetic levitation, this significantly reduces rolling resistance compared to traditional wheels. ‍‍Forward movement: The pods are propelled forward using linear electric motors. Air drag elimination: The pods travel in a near-vacuum tube, which minimizes air resistance, allowing for high-speed travel with less energy. If you wish to know more about the Hyperloop concept you can have a look at all ofand do not hesitate to contact us!",
+    "images": ["/images/pymol_GtHNL.png"],
+    "pdf": "/docs/BEP_Thesis_Maarten_Smits_10_7_2024_#2.pdf"
   }
 ]
