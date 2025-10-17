@@ -5,6 +5,7 @@ import data from "@/data/projects.json";
 import type { Project } from "@/lib/types";
 import FilterSheet from "@/components/FilterSheet"; // 👈 add this
 import Link from "next/link";
+import ClearFilters from "@/components/ClearFilters"; // 👈 adjust import
 
 type SP = Record<string, string | string[] | undefined>;
 
@@ -88,19 +89,20 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   
   return (
     <main className="min-h-dvh bg-black">
-      <div className="mx-auto max-w-7xl px-4 py-8">
-        <header className="mb-4">
-          <h1 className="text-2xl md:text-2xl tracking-tight text-white text-right">
+      <div className="mx-auto max-w-7xl px-4 py-3.5">
+        <header className="mb-5 flex items-center justify-between">
+          <h1 className="text-2xl md:text-2xl tracking-tight text-white">
             <Link
               href="/"
               aria-label="Go to landing page"
-              className="inline-block rounded px-1 hover:decoration-white/70 focus:outline-none"
+              className="text-base md:text-lg font-extrabold tracking-tight text-white"
             >
               TU Delft | Dream Lab
             </Link>
           </h1>
-          <p className="mt-10 text-gray-400"></p>
+          <ClearFilters /> {/* 👈 appears only when any filter is active */}
         </header>
+        
 
         {/* remove the old visible tray:
         <div className="mb-6 rounded-3xl border bg-white/80 p-4 backdrop-blur ring-1 ring-black/5">
