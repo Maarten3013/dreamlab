@@ -49,20 +49,25 @@ export default function MosaicLightbox({ images, title }: { images: Img[]; title
   return (
     <>
       {/* Mosaic thumbnails */}
-      <div className="mt-8 columns-2 gap-3 md:columns-2">
-        {items.map((img, i) => (
-          <button
-            key={img.url + i}
-            onClick={() => onOpen(i)}
-            className="mb-3 w-full overflow-hidden rounded-2xl bg-gray-100 transition hover:opacity-90 focus:outline-none"
-            style={{ breakInside: "avoid" }}
-            aria-label={`Open image ${i + 1}`}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={img.url} alt={img.alt ?? title} className="h-auto w-full object-cover" loading="lazy" />
-          </button>
-        ))}
-      </div>
+        <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-3">
+          {items.map((img, i) => (
+            <button
+              key={img.url + i}
+              onClick={() => onOpen(i)}
+              className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl
+                        bg-neutral-800 ring-1 ring-white/10 hover:ring-white/20 focus:outline-none"
+              aria-label={`Open image ${i + 1}`}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img.url}
+                alt={img.alt ?? title}
+                className="absolute inset-0 h-full w-full object-cover transition duration-300 group-hover:opacity-95"
+                loading="lazy"
+              />
+            </button>
+          ))}
+        </div>
 
       {/* Lightbox */}
       {open && (
