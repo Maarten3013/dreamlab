@@ -48,10 +48,12 @@ export default function TileCard({ p }: { p: Project }) {
         />
 
         {/* Hover title pill */}
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 translate-y-2 opacity-0 transition duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-          <div className="mx-2 mb-2 rounded-2xl bg-black/70 px-3 py-2 backdrop-blur ring-1 ring-white/10">
-            <h3 className="line-clamp-1 text-base font-semibold text-white">{p.title}</h3>
-          </div>
+        <div className="
+          pointer-events-none absolute inset-x-0 bottom-0 z-10
+          mx-2 mb-2 rounded-2xl bg-black/70 px-3 py-2 backdrop-blur ring-1 ring-white/10
+          md:translate-y-2 md:opacity-0 md:transition md:duration-300 md:group-hover:translate-y-0 md:group-hover:opacity-100
+        ">
+          <h3 className="line-clamp-1 text-sm md:text-base font-semibold text-white">{p.title}</h3>
         </div>
 
         {/* Subtle inner gradient for depth */}

@@ -18,46 +18,30 @@ export default function FilterSheet({ children }: { children: React.ReactNode })
       <button
         aria-label="Open filters"
         onClick={() => setOpen(true)}
-        className="fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center
-        rounded-full border border-white/20 bg-white/10 text-white shadow-lg ring-1 ring-white/10
-        backdrop-blur hover:bg-white/20 hover:ring-white/30 transition">
-            
-        {/* funnel icon */}
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden className="opacity-80">
-          <path d="M3 5h18l-7 8v5l-4 2v-7L3 5z" stroke="currentColor" strokeWidth="1.6" fill="currentColor" />
-        </svg>
+        className="fixed z-40 inline-flex h-12 w-12 items-center justify-center rounded-full
+                  border border-white/20 bg-white/10 text-white shadow-lg ring-1 ring-white/10
+                  backdrop-blur hover:bg-white/20 transition
+                  right-[calc(1rem+env(safe-area-inset-right))] bottom-[calc(1rem+env(safe-area-inset-bottom))]"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" className="text-white"><path d="M3 5h18l-7 8v5l-4 2v-7L3 5z" fill="currentColor"/></svg>
       </button>
 
-      {/* Backdrop */}
-      {open && (
-        <div
-          className="fixed inset-0 z-40 bg-black/40"
-          onClick={() => setOpen(false)}
-          aria-hidden
-        />
-      )}
-
-      {/* Slide-over panel */}
       <aside
-        className={`fixed right-0 top-0 z-50 h-full w-full max-w-md transform bg-neutral-950 p-5
-        shadow-2xl ring-1 ring-white/10 transition-transform duration-300 ease-out
-        ${open ? "translate-x-0" : "translate-x-full"}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Filters"
+        className={`fixed inset-y-0 right-0 z-50 h-full w-full max-w-md transform bg-neutral-950 p-5
+                    shadow-2xl ring-1 ring-white/10 transition-transform duration-300 ease-out
+                    md:max-w-md md:translate-x-0
+                    ${open ? "translate-x-0" : "translate-x-full"}`}
+        role="dialog" aria-modal="true" aria-label="Filters"
       >
         <div className="mb-4 flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Filters</h2>
+          <h2 className="text-lg font-semibold text-white">Filters</h2>
           <button
             onClick={() => setOpen(false)}
             className="rounded-full border border-white/20 px-3 py-1 text-sm text-white hover:bg-white/10"
-
-            aria-label="Close filters"
           >
             Close
           </button>
         </div>
-
         <div className="space-y-4">{children}</div>
       </aside>
     </>
