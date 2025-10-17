@@ -23,12 +23,13 @@ export default function Filters({
     const next = new URLSearchParams(Array.from(sp.entries()));
     if (value === "All" || value === "") next.delete(key);
     else next.set(key, value);
-    next.delete("page");
+    next.delete("page"); // reset pagination on filter change
     router.replace(`${pathname}?${next.toString()}`);
   };
 
   return (
     <div className="mb-6 grid grid-cols-1 gap-3 md:grid-cols-4">
+      {/* Search */}
       <div className="md:col-span-2">
         <input
           defaultValue={q}
@@ -38,25 +39,39 @@ export default function Filters({
         />
       </div>
 
-      <div className="flex gap-2 overflow-x-auto">
-        <button
-          onClick={() => setParam("category", "All")}
-          className={`rounded-full border px-3 py-2 text-sm ${category === "All" ? "bg-black text-white" : ""}`}
-        >
-          All
-        </button>
-        {categories.map((c) => (
+      {/* Category pills — wrap instead of scroll */}
+      <div className="md:col-span-2">
+        <div className="flex flex-wrap gap-2">
           <button
-            key={c}
-            onClick={() => setParam("category", c)}
-            className={`whitespace-nowrap rounded-full border px-3 py-2 text-sm ${category === c ? "bg-black text-white" : ""}`}
+            onClick={() => setParam("category", "All")}
+            className={`rounded-full px-3 py-2 text-sm ring-1 ring-inset transition ${
+              category === "All"
+                ? "bg-black text-white ring-black"
+                : "bg-white text-gray-700 ring-gray-300 hover:bg-gray-50"
+            }`}
           >
-            {c}
+            All
           </button>
-        ))}
+
+          {categories.map((c) => (
+            <button
+              key={c}
+              onClick={() => setParam("category", c)}
+              className={`rounded-full px-3 py-2 text-sm ring-1 ring-inset transition ${
+                category === c
+                  ? "bg-black text-white ring-black"
+                  : "bg-white text-gray-700 ring-gray-300 hover:bg-gray-50"
+              }`}
+              title={c}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="flex items-center gap-2">
+      {/* Year + Award selects (stack nicely) */}
+      <div className="col-span-1 flex flex-col gap-2 md:col-span-2 md:flex-row">
         <select
           defaultValue={year}
           onChange={(e) => setParam("year", e.target.value)}
@@ -64,7 +79,9 @@ export default function Filters({
         >
           <option value="All">All years</option>
           {years.map((y) => (
-            <option key={y} value={y}>{y}</option>
+            <option key={y} value={y}>
+              {y}
+            </option>
           ))}
         </select>
 
@@ -75,7 +92,9 @@ export default function Filters({
         >
           <option value="All">All awards</option>
           {awards.map((a) => (
-            <option key={a} value={a}>{a}</option>
+            <option key={a} value={a}>
+              {a}
+            </option>
           ))}
         </select>
       </div>

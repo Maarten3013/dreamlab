@@ -31,12 +31,12 @@ export default function ProjectCard({ p }: { p: Project }) {
       <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-100">
         {/* Award sticker overlay (actual image you provided) */}
         {badge && (
-          <img
+        <img
             src={badge.src}
             alt={badge.alt}
-            className="pointer-events-none absolute right-3 top-3 z-10 h-8 w-auto select-none drop-shadow md:h-10 lg:h-12"
+            className="pointer-events-none absolute right-4 top-4 z-10 h-14 w-auto select-none drop-shadow md:h-16 lg:h-20"
             loading="eager"
-          />
+        />
         )}
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
