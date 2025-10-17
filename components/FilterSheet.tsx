@@ -19,8 +19,8 @@ export default function FilterSheet({ children }: { children: React.ReactNode })
         aria-label="Open filters"
         onClick={() => setOpen(true)}
         className="fixed bottom-6 right-6 z-40 inline-flex h-11 w-11 items-center justify-center
-        rounded-full border border-white/10 bg-white/5 shadow-lg ring-1 ring-white/10
-        backdrop-blur hover:bg-white/10 hover:ring-white/30 transition">
+        rounded-full border border-white/20 bg-white/10 text-white shadow-lg ring-1 ring-white/10
+        backdrop-blur hover:bg-white/20 hover:ring-white/30 transition">
             
         {/* funnel icon */}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden className="opacity-80">
@@ -50,7 +50,8 @@ export default function FilterSheet({ children }: { children: React.ReactNode })
           <h2 className="text-lg font-semibold">Filters</h2>
           <button
             onClick={() => setOpen(false)}
-            className="rounded-full border border-white/10 px-3 py-1 text-sm text-white hover:bg-white/10"
+            className="rounded-full border border-white/20 px-3 py-1 text-sm text-white hover:bg-white/10"
+
             aria-label="Close filters"
           >
             Close

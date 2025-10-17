@@ -105,7 +105,7 @@
 import Link from "next/link";
 export default function Home() {
 return (
-<main className="min-h-dvh bg-glow">
+<main className="mx-auto flex min-h-dvh max-w-7xl flex-col items-center justify-center gap-6 p-8 text-center">
 <h1 className="text-4xl font-bold">Welcome To The Dream Lab</h1>
 <p className="text-gray-600">Explore the awesome projects made students of the TU Delft</p>
 <Link href="/explore" className="rounded-full border px-5 py-3 font-medium hover:bg-gray-50">Go to Explore →</Link>

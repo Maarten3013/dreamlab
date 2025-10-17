@@ -37,17 +37,14 @@ function Chip({
       className={[
         "rounded-full px-3 py-2 text-sm transition ring-1 ring-inset",
         active
-          ? "bg-black text-white ring-black"
-          : `${palette} hover:opacity-90` // <- soft pastel fill
+          ? "bg-white text-black ring-white"
+          : "bg-transparent text-white ring-white/30 hover:bg-white/10"
       ].join(" ")}
       // Use pastel bg as a subtle dot before text when inactive
       style={!active ? { boxShadow: `inset 0 0 0 9999px rgba(0,0,0,0)` } : undefined}
     >
       <span className="inline-flex items-center gap-2">
-        <span
-          className={`h-2.5 w-2.5 rounded-full ring-1 ring-inset ${active ? "bg-white/40 ring-white/40" : pastel[idx]}`}
-          aria-hidden
-        />
+        <span className={`h-2.5 w-2.5 rounded-full ring-1 ring-inset ${active ? "bg-black/30 ring-black/30" : "bg-white/20 ring-white/20"}`} />
         {label}
       </span>
     </button>
@@ -91,9 +88,10 @@ export default function Filters({
             defaultValue={q}
             onChange={(e) => setParam("q", e.target.value)}
             placeholder="Search titles, tags, descriptions…"
-            className="w-full rounded-2xl border bg-white/90 px-4 py-3 pl-10 ring-1 ring-black/5 placeholder:text-gray-400 focus:outline-none"
+            className="w-full rounded-2xl border border-white/20 bg-transparent px-4 py-3 pl-10
+            text-white placeholder:text-white/50 ring-1 ring-white/10 focus:outline-none"
           />
-          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">⌕</span>
+          <span className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-white/70">⌕</span>
         </div>
       </div>
 
