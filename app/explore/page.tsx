@@ -48,8 +48,8 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
     <main className="min-h-dvh bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8">
         <header className="mb-4">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white">Welcome to the DreamLab</h1>
-          <p className="mt-1 text-gray-400">Here you will find the most innovative and groundbreaking projects the TU Delft has produced</p>
+          <h1 className="text-2xl tracking-tight text-right text-white">TU Delft | Dream Lab</h1>
+          <p className="mt-10 text-gray-400"></p>
         </header>
 
         {/* remove the old visible tray:
