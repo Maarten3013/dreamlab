@@ -67,7 +67,6 @@
     "images": ["/images/pymol_GtHNL.png"],
     "pdf": "/docs/bep_maarten_smits.pdf"
   },
-  [
   {
     "id": "brunel-solar-team",
     "title": "Brunel Solar Team (Nuna)",
@@ -176,5 +175,4 @@
     "images": ["/images/igem_tudelft_1.jpeg", "/images/igem_tudelft_2.jfif"],
     "website": "https://igem.tnw.tudelft.nl/"
   }
-]
 ]
