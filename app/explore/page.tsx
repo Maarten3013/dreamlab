@@ -3,6 +3,7 @@ import Masonry from "@/components/Masonry";
 import Filters from "./Filters";
 import data from "@/data/projects.json";
 import type { Project } from "@/lib/types";
+import FilterSheet from "@/components/FilterSheet"; // 👈 add this
 
 type SP = Record<string, string | string[] | undefined>;
 
@@ -46,18 +47,22 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
   return (
     <main className="min-h-dvh bg-gradient-to-b from-sky-50 via-white to-violet-50/40">
       <div className="mx-auto max-w-7xl px-4 py-8">
-        {/* Compact header */}
         <header className="mb-4">
           <h1 className="text-4xl font-extrabold tracking-tight">Explore</h1>
           <p className="mt-1 text-gray-600">A cinematic wall of your projects.</p>
         </header>
 
-        {/* Slim tray around filters */}
+        {/* remove the old visible tray:
         <div className="mb-6 rounded-3xl border bg-white/80 p-4 backdrop-blur ring-1 ring-black/5">
-          <Filters years={years} categories={categories} awards={awards} />
+          <Filters ... />
         </div>
+        */}
 
-        {/* The wall */}
+        {/* tiny floating trigger + hidden panel */}
+        <FilterSheet>
+          <Filters years={years} categories={categories} awards={awards} />
+        </FilterSheet>
+
         <Masonry projects={projects as Project[]} />
 
         {projects.length === 0 && (
