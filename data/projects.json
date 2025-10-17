@@ -24,9 +24,9 @@
     "category": "Architecture",
     "award": "Coup de Coeur",
     "tags": ["habitat", "modular"],
-    "cover": "/images/spaceoasis.avif",
+    "cover": "/images/spaceoasis.png",
     "description": "Space Oasis Delft III is on their design of a Martian base capable of keeping up to  4 astronauts mentally and physically well! The team is spending this year designing a self-sustainable Martian base with a strong emphasis on psychological well-being. This year, the central module of the Martian habitat will build to give the world a perspective on how a Martian base should look. Curious to see the who is behind this project? Visit the team page to see the TU Delft students who are working on this year's Space Oasis!",
-    "images": ["/images/spaceoasis_2.avif", "/images/spaceoasis_3.avif"],
+    "images": ["/images/spaceoasis_1.avif","/images/spaceoasis_2.avif", "/images/spaceoasis_3.avif"],
     "website": "https://spaceoasisdelft.nl",
     "pdf": "/docs/visual_book_sod2.pdf"
   },
