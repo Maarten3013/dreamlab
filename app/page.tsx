@@ -56,7 +56,7 @@ export default function Home() {
               href="/explore"
               className="rounded-2xl border border-cyan-400/50 bg-cyan-400/20 px-5 py-3 text-sm font-semibold text-cyan-100 ring-1 ring-cyan-300/30 transition hover:bg-cyan-400/30 hover:ring-cyan-300/50"
             >
-              Explore projects →
+              Explore →
             </Link>
             <a
               href="mailto:maarten.smits@spaceoasisdelft.nl"
