@@ -3,32 +3,14 @@ import type { Project } from "@/lib/types";
 import Badge from "@/components/Badge";
 import Gallery from "@/components/Gallery"; // 👈 add this
 import { notFound } from "next/navigation";
+// …imports unchanged
+import Link from "next/link";
 
-export async function generateStaticParams() {
-  return (data as Project[]).map((p) => ({ id: p.id }));
-}
-
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const { id } = await params;
-  const p = (data as Project[]).find((x) => x.id === id);
-  if (!p) return {};
-  return { title: `${p.title} – Project Explorer`, openGraph: { images: [{ url: p.cover }] } };
-}
-
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const p = (data as Project[]).find((x) => x.id === id);
   if (!p) notFound();
 
-  // normalize to an array of strings/objects
   const gallery = Array.isArray(p.images) ? p.images : [];
 
   return (
@@ -47,11 +29,38 @@ export default async function ProjectPage({
         {p.award && p.award !== "None" && <Badge label={p.award} />}
       </div>
 
-      {p.subtitle && <p className="mt-1 text-gray-600">{p.subtitle}</p>}
-      <p className="mt-4 text-gray-700 whitespace-pre-line">{p.description}</p>
+      {/* 👇 Action buttons */}
+      {(p.website || p.pdf) && (
+        <div className="mt-4 flex flex-wrap gap-3">
+          {p.website && (
+            <a
+              href={p.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+            >
+              Visit website ↗
+            </a>
+          )}
+          {p.pdf && (
+            <a
+              href={p.pdf}           // e.g. "/docs/emergence_catalogue.pdf"
+              download                // browser may ignore for cross-origin URLs
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+            >
+              Download PDF
+            </a>
+          )}
+        </div>
+      )}
 
-      {/* 👇 gallery thumbnails + lightbox */}
-      <Gallery images={gallery} title={p.title} />
+      {p.subtitle && <p className="mt-4 text-gray-600">{p.subtitle}</p>}
+      <p className="mt-4 whitespace-pre-line text-gray-700">{p.description}</p>
+
+      {/* (Optional) gallery if you added it earlier */}
+      {/* <Gallery images={gallery} title={p.title} /> */}
 
       <div className="mt-6 flex flex-wrap gap-2">
         {p.tags.map((t) => (

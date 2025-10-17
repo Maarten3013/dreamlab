@@ -6,10 +6,12 @@ export type Project = {
   title: string;
   subtitle?: string;
   year: number;
-  category: string; // allow any string
-  award: string;    // allow any string
+  category: string;
+  award: string;
   tags: string[];
-  cover: string;    // e.g. "/data/images/emergence_4.avif"
+  cover: string;
   description: string;
-  images?: string[] | { url: string; alt?: string }[]; // support simple arrays
+  images?: string[] | { url: string; alt?: string }[];
+  website?: string; // 👈 NEW (external URL)
+  pdf?: string;     // 👈 NEW (public file path, e.g. "/docs/emergence.pdf")
 };
