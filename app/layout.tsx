@@ -13,8 +13,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const analytics = Analytics;
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
