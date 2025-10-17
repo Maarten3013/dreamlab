@@ -4,6 +4,7 @@ import Filters from "./Filters";
 import data from "@/data/projects.json";
 import type { Project } from "@/lib/types";
 import FilterSheet from "@/components/FilterSheet"; // 👈 add this
+import Link from "next/link";
 
 type SP = Record<string, string | string[] | undefined>;
 
@@ -48,7 +49,15 @@ export default async function Explore({ searchParams }: { searchParams: Promise<
     <main className="min-h-dvh bg-black">
       <div className="mx-auto max-w-7xl px-4 py-8">
         <header className="mb-4">
-          <h1 className="text-2xl tracking-tight text-right text-white">TU Delft | Dream Lab</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white text-center">
+            <Link
+              href="/"
+              aria-label="Go to landing page"
+              className="inline-block rounded px-1 hover:underline hover:decoration-white/70 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
+            >
+              TU Delft | Dream Lab
+            </Link>
+          </h1>
           <p className="mt-10 text-gray-400"></p>
         </header>
 
